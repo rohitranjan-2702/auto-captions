@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+:root {
+  --bg: oklch(0.98 0.006 85);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.995 0.004 85);
+  --surface-3: oklch(0.99 0.005 85);
+
+  --text: oklch(0.24 0.012 265);
+  --muted: oklch(0.5 0.015 265);
+  --muted-2: oklch(0.58 0.015 265);
+
+  --border: oklch(0.91 0.008 265);
+  --border-strong: oklch(0.88 0.01 265);
+  --border-hover: oklch(0.8 0.03 265);
+
+  --accent: oklch(0.53 0.15 265);
+  --accent-hover: oklch(0.44 0.16 265);
+  --accent-ring: oklch(0.53 0.15 265 / 0.13);
+  --accent-shadow: oklch(0.53 0.15 265 / 0.28);
+
+  --good: oklch(0.6 0.19 150);
+  --good-deep: oklch(0.42 0.09 150);
+  --good-bg: oklch(0.98 0.03 150);
+  --good-border: oklch(0.86 0.06 150);
+
+  --danger: oklch(0.55 0.17 25);
+  --danger-bg: oklch(0.97 0.03 25);
+  --danger-border: oklch(0.86 0.07 25);
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains-mono);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-hover);
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+select:focus-visible,
+input:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes sheen {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+/* ---- building blocks ---------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 1px 2px rgba(20, 20, 40, 0.04);
+}
+
+.step-num {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.opt {
+  position: relative;
+  border: 1px solid var(--border-strong);
+  border-radius: 13px;
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+.opt:hover {
+  border-color: var(--border-hover);
+}
+.opt[data-on="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+.opt:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.field {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: inherit;
+  padding: 11px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.field:disabled {
+  opacity: 0.55;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cta {
+  flex: 1;
+  border: none;
+  border-radius: 13px;
+  padding: 16px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease;
+  box-shadow: 0 6px 16px var(--accent-shadow);
+}
+.cta:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+.cta:disabled {
+  background: oklch(0.92 0.01 265);
+  color: oklch(0.68 0.015 265);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 11px 15px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.btn:hover {
+  background: oklch(0.96 0.008 265);
+}
+.btn-good {
+  border: none;
+  background: var(--good-deep);
+  color: #fff;
+}
+.btn-good:hover {
+  background: oklch(0.37 0.09 150);
+}

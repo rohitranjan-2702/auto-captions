@@ -1,0 +1,9 @@
+node_modules/
+dist/
+models/*.bin
+samples/*.mp4
+samples/*.aiff
+samples/*.png
+samples/*.ass
+video/
+*.captioned.*
